@@ -4,11 +4,9 @@
 
 # Setting
 
-* Setting prefix, number, & apikey : [`click`](https://github.com/alanwildan/selfbot/blob/main/src/settings.json)
+* Setting prefix, number, & apikey : [`click`](https://github.com/alanwildan/SELFBOT2/blob/main/src/settings.json)
 
-* Setting thumbnile freply : [`click`](https://github.com/alanwildan/selfbot/tree/main/image) 
-
-* Vcard : [`click`](https://github.com/alanwildan/selfbot/blob/main/index.js#L31) 
+* Vcard : [`click`](https://github.com/alanwildan/SELFBOT2/blob/main/index.js#L46) 
 
 # INSTALL
 

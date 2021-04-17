@@ -13,21 +13,12 @@
 # INSTALL
 
 ```bash
-
-$ termux-setup-storage
-
 $ pkg update && pkg upgrade
-
 $ pkg install git -y && pkg install ffmpeg -y && pkg install bash -y && pkg install nodejs -y
-
-$ git clone https://github.com/alanwildan/selfbot
-
-$ cd selfbot
-
+$ git clone https://github.com/alanwildan/SELFBOT2
+$ cd SELFBOT2
 $ npm install
-
 $ npm audit fix
-
 $ npm start
 
 Tinggal Scan Qr Di WhatsApp Mu

@@ -55,38 +55,6 @@ const vcard = 'BEGIN:VCARD\n'
 const setiker = JSON.parse(fs.readFileSync('./src/stik.json'))
 const audionye = JSON.parse(fs.readFileSync('./src/audio.json'))
 const promot = JSON.parse(fs.readFileSync('./lib/promot.json'))
-const afk = JSON.parse(fs.readFileSync('./lib/afk.json'))
-const addafk = (from) => {
-    const obj = { id: from, expired: Date.now() + toMs('2m') }
-    afk.push(obj)
-    fs.writeFileSync('./lib/afk.json', JSON.stringify(afk))
-}
-const cekafk = (_dir) => {
-    setInterval(() => {
-        let position = null
-        Object.keys(_dir).forEach((i) => {
-            if (Date.now() >= _dir[i].expired) {
-                position = i
-            }
-        })
-        if (position !== null) {
-            _dir.splice(position, 1)
-            fs.writeFileSync('./lib/afk.json', JSON.stringify(_dir))
-        }
-    }, 1000)
-}
-const sleep = async (ms) => {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-const isAfk = (idi) => {
-    let status = false
-    Object.keys(afk).forEach((i) => {
-        if (afk[i].id === idi) {
-            status = true
-        }
-    })
-    return status
-} 
 function kyun(seconds){
   function pad(s){
     return (s < 10 ? '0' : '') + s;

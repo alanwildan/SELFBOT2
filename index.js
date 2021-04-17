@@ -837,19 +837,7 @@ runtime = process.uptime()
             });
             break
 				
-/******************************  END SCRAPER BRO ******************************/
-
-
-case 'reminder':
-					var gh = body.slice(10)
-					var anu = gh.split("|")[0];
-					var ani = gh.split("|")[1];
-					jm = `${anu}000`
-					selfb.sendMessage(from, `*「 REMINDER 」*\n\nReminder diaktifkan!\n\n➸  *Pesan*: ${ani}\n➸  *Durasi*: ${anu} detik\n➸  *Untuk*: @${sender.split("@s.whatsapp.net")[0]}`, text, {contextInfo: {mentionedJid: [sender]}})
-					setTimeout( () => {
-					selfb.sendMessage(from, `*「 REMINDER 」*\n\Waktu telah habis~@${sender.split("@s.whatsapp.net")[0]}\n\n➸  *Pesan*: ${ani}`, text, {contextInfo: {mentionedJid: [sender]}}) // ur cods
-					}, jm) // 1000 = 1s,
-					break    
+/******************************  END SCRAPER BRO ******************************/ 
 case 'promot':
 					if (args.length < 1) return reply('Hmmmm')
 					if (Number(args[0]) === 1) {

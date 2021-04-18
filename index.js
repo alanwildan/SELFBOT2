@@ -5,6 +5,7 @@ const {
     mentionedJid, 
     Mimetype,
     GroupSettingChange, 
+    ChatModification,
     WA_DEFAULT_EPHEMERAL, 
     WA_MESSAGE_STUB_TYPES
 } = require('@adiwajshing/baileys')
@@ -20,7 +21,7 @@ const gis = require('g-i-s');
 const got = require("got");
 const fs = require('fs')
 const ig = require('insta-fetcher')
-const zrapi = require('zrapi')
+const tik = require('tiktok-scraper-without-watermark')
 const { EmojiAPI } = require("emoji-api");
 const emoji = new EmojiAPI()
 const axios = require("axios")
@@ -55,6 +56,38 @@ const vcard = 'BEGIN:VCARD\n'
 const setiker = JSON.parse(fs.readFileSync('./src/stik.json'))
 const audionye = JSON.parse(fs.readFileSync('./src/audio.json'))
 const promot = JSON.parse(fs.readFileSync('./lib/promot.json'))
+const afk = JSON.parse(fs.readFileSync('./lib/afk.json'))
+const addafk = (from) => {
+    const obj = { id: from, expired: Date.now() + toMs('2m') }
+    afk.push(obj)
+    fs.writeFileSync('./lib/afk.json', JSON.stringify(afk))
+}
+const cekafk = (_dir) => {
+    setInterval(() => {
+        let position = null
+        Object.keys(_dir).forEach((i) => {
+            if (Date.now() >= _dir[i].expired) {
+                position = i
+            }
+        })
+        if (position !== null) {
+            _dir.splice(position, 1)
+            fs.writeFileSync('./lib/afk.json', JSON.stringify(_dir))
+        }
+    }, 1000)
+}
+const sleep = async (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+const isAfk = (idi) => {
+    let status = false
+    Object.keys(afk).forEach((i) => {
+        if (afk[i].id === idi) {
+            status = true
+        }
+    })
+    return status
+} 
 function kyun(seconds){
   function pad(s){
     return (s < 10 ? '0' : '') + s;
@@ -604,6 +637,10 @@ runtime = process.uptime()
 ┣ ❏ *${prefix}setbio*
 ┣ ❏ *${prefix}setfake*
 ┣ ❏ *${prefix}setthumb*
+┣ ❏ *${prefix}pin*
+┣ ❏ *${prefix}unpin*
+┣ ❏ *${prefix}mute*
+┣ ❏ *${prefix}unmute*
 ┃
 ┣◪ 𝗠𝗘𝗗𝗜𝗔
 ┃
@@ -805,7 +842,19 @@ runtime = process.uptime()
             });
             break
 				
-/******************************  END SCRAPER BRO ******************************/ 
+/******************************  END SCRAPER BRO ******************************/
+
+
+case 'reminder':
+					var gh = body.slice(10)
+					var anu = gh.split("|")[0];
+					var ani = gh.split("|")[1];
+					jm = `${anu}000`
+					selfb.sendMessage(from, `*「 REMINDER 」*\n\nReminder diaktifkan!\n\n➸  *Pesan*: ${ani}\n➸  *Durasi*: ${anu} detik\n➸  *Untuk*: @${sender.split("@s.whatsapp.net")[0]}`, text, {contextInfo: {mentionedJid: [sender]}})
+					setTimeout( () => {
+					selfb.sendMessage(from, `*「 REMINDER 」*\n\Waktu telah habis~@${sender.split("@s.whatsapp.net")[0]}\n\n➸  *Pesan*: ${ani}`, text, {contextInfo: {mentionedJid: [sender]}}) // ur cods
+					}, jm) // 1000 = 1s,
+					break    
 case 'promot':
 					if (args.length < 1) return reply('Hmmmm')
 					if (Number(args[0]) === 1) {
@@ -936,18 +985,18 @@ break
                     case 'statusimg':
                     var teksyy = body.slice(11) 
                     reply('Sedang Proses Pengiriman!')
-                    enmedia = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-					media = await selfb.downloadAndSaveMediaMessage(enmedia)
-                    buff2 = fs.readFileSync(media)
+                    gwambar = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
+					gambar = await selfb.downloadAndSaveMediaMessage(gwambar)
+                    buff2 = fs.readFileSync(gambar)
                     selfb.sendMessage('status@broadcast', buff2, MessageType.image, {quoted: mek, caption: `${teksyy}`})
                     reply('Sukses Upload Gambar Ke Status!')
                         break
                         case 'statusvid':
                     var teksyy = body.slice(11)
                     reply('Sedang Mengupload!')
-                    enmedia = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-					media = await selfb.downloadAndSaveMediaMessage(enmedia)
-                    buff5 = fs.readFileSync(media)
+                    pideo = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
+					pisdo = await selfb.downloadAndSaveMediaMessage(pideo)
+                    buff5 = fs.readFileSync(pisdo)
                     selfb.sendMessage('status@broadcast', buff5, MessageType.video, {quoted: mek, caption: `${teksyy}`})
                     reply('Sukses Upload Video Ke Status!')
                         break
@@ -1498,9 +1547,9 @@ await selfb.toggleDisappearingMessages(from, 0)
 					case 'setpp':
 									        selfb.updatePresence(from, Presence.composing) 
 									    			if (!isQuotedImage) return reply(`Kirim gambar dengan caption ${prefix}setbotpp atau tag gambar yang sudah dikirim`)
-									    					    enmedia = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
-									    								media = await selfb.downloadAndSaveMediaMessage(enmedia)
-									    										    await selfb.updateProfilePicture(botNumber, media)
+									    					    prepire = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
+									    								epep = await selfb.downloadAndSaveMediaMessage(prepire)
+									    										    await selfb.updateProfilePicture(botNumber, epep)
 									    													reply('Sukses update photo profile')
 									    															    break 
 					case 'toimg':
@@ -2135,19 +2184,32 @@ break
             sendMediaURL(from,ten,teks) 
             })      
             break 
-            case 'tiktok':
-            if (!isUrl(args[0]) && !args[0].includes('tiktok.com')) return reply(mess.Iv)
-            if (!q) return fakegroup('Linknya?')
-            reply(mess.wait)
-            zrapi.keeptiktok(`${args[0]}`)
-            .then(data => {
-            da = `${data}`
-            axios.get(`https://tinyurl.com/api-create.php?url=${da}`)
-            .then(async (a) => {
-            sendMediaURL(from,da,`*TIKTODD DOWNLOADER*\n\n*Link* : ${a.data}`) 
-            })
-            })
-            break
+            case  'tiktok':
+ 		if (!isUrl(args[0]) && !args[0].includes('tiktok.com')) return reply(mess.Iv)
+ 		if (!q) return fakegroup('Linknya?')
+ 		reply(mess.wait)
+ 		tik.ssstik(`${args[0]}`)
+    		.then(result => {
+    		const { videonowm, videonowm2, text } = result
+    		axios.get(`https://tinyurl.com/api-create.php?url=${videonowm2}`)
+    		.then(async (a) => {
+    		me = `     *Title* : ${text}\n\n     *Link* : ${a.data}`
+		selfb.sendMessage(from,{url:`${videonowm}`},video,{mimetype:'video/mp4',quoted:mek,caption:me})
+		})
+		})
+     		.catch(e => console.log(e))
+     		break
+     case 'tiktokaudio':
+ 		if (!isUrl(args[0]) && !args[0].includes('tiktok.com')) return reply(mess.Iv)
+ 		if (!q) return fakegroup('Linknya?')
+ 		reply(mess.wait)
+ 		tik.ssstik(`${args[0]}`)
+    		.then(result => {
+    		const { music,text } = result
+		selfb.sendMessage(from,{url:`${music}`},audio,{mimetype:'audio/mp4',filename : `${text}`,quoted:mek})
+		})
+     		.catch(e => console.log(e))
+     		break
             case 'ig':
             if (!isUrl(args[0]) && !args[0].includes('instagram.com')) return reply(mess.Iv)
             if (!q) return fakegroup('Linknya?')
@@ -2204,25 +2266,21 @@ break
     		selfb.sendMessage(from, mat, MessageType.extendedText, anu)
             break
             case 'mute':
-              if (!itsMe) return reply('This command only for mega')
               selfb.modifyChat(from, ChatModification.mute, 24*60*60*1000)
             reply('*succes mute this chat*')
             console.log('succes mute chat = ' + from)
             break
           case 'unmute':
-            if (!itsMe) return reply('This command only for mega')
             selfb.modifyChat(from, ChatModification.unmute)
             reply('*succes unmute this chat*')
             console.log('succes unmute chat = ' + from)
             break
             case 'unpin':
-              if (!itsMe) return reply('This command only for lindow')
               selfb.modifyChat(from, ChatModification.unpin)
               reply('*succes unpin this chat*')
               console.log('unpin chat = ' + from)
               break
           case 'pin':
-              if (!itsMe) return reply('This command only for lindow')
               selfb.modifyChat(from, ChatModification.pin)
               reply('*succes pin this chat*')
               console.log('pinned chat = ' + from)

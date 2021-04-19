@@ -4,13 +4,15 @@
 
 # Setting
 
+Edit in[`settings.json`](https://github.com/alanwildan/SELFBOT2/blob/main/src/settings.json)
+
 ```json
 {
-	"prefix": "z",
-	"ownerNumber": "628××××××××××",
-	"lol": "APIKEY_lolhuman",
-	"vinz": "apivinz",
-	"apiKey": "APIKEY_leyscoders"
+     "prefix": "z",
+     "ownerNumber": "628××××××××××",
+     "lol": "APIKEY_lolhuman",
+     "vinz": "apivinz",
+     "apiKey": "APIKEY_leyscoders"
 }
 
 ```

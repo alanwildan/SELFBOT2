@@ -14,7 +14,9 @@
 }
 
 ```
-Change in[`settings.json`](https://github.com/alanwildan/SELFBOT2/blob/main/src/settings.json)
+* Get apikey lolhuman On[`lolhuman`](api.lolhuman.xyz)
+* Get apikey leyscoders On[`leyscoders`](https://leyscoders-api.herokuapp.com/api)
+Edit settings[`settings.json`](https://github.com/alanwildan/SELFBOT2/blob/main/src/settings.json)
 
 # INSTALL
 

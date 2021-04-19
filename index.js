@@ -797,7 +797,7 @@ runtime = process.uptime()
 				reply(mess.error.link) 
 				}
 				break
-				case 'image'	:
+				case 'image':
             if (args.length < 1) return reply('Masukan teks!')
             const gimg = args[0];
             gis(gimg, async (error, result) => {

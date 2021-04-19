@@ -5,6 +5,7 @@
 # Setting
 
 ``bash
+
 {
 	"prefix": "z",
 	"ownerNumber": "628××××××××××",
@@ -12,6 +13,7 @@
 	"vinz": "apivinz",
 	"apiKey": "APIKEY_leyscoders"
 }
+
 ```
 
 # INSTALL

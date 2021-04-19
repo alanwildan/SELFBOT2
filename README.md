@@ -4,7 +4,7 @@
 
 # Setting
 
-``bash
+```json
 {
 	"prefix": "z",
 	"ownerNumber": "628××××××××××",

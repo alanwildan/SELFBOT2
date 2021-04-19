@@ -4,8 +4,6 @@
 
 # Setting
 
-Edit in[`settings.json`](https://github.com/alanwildan/SELFBOT2/blob/main/src/settings.json)
-
 ```json
 {
      "prefix": "z",
@@ -16,6 +14,7 @@ Edit in[`settings.json`](https://github.com/alanwildan/SELFBOT2/blob/main/src/se
 }
 
 ```
+Change in[`settings.json`](https://github.com/alanwildan/SELFBOT2/blob/main/src/settings.json)
 
 # INSTALL
 

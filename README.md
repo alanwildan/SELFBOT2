@@ -4,9 +4,15 @@
 
 # Setting
 
-* Setting prefix, number, & apikey : [`click`](https://github.com/alanwildan/SELFBOT2/blob/main/src/settings.json)
-
-* Vcard : [`click`](https://github.com/alanwildan/SELFBOT2/blob/main/index.js#L46) 
+``bash
+{
+	"prefix": "z",
+	"ownerNumber": "628××××××××××",
+	"lol": "APIKEY_lolhuman",
+	"vinz": "apivinz",
+	"apiKey": "APIKEY_leyscoders"
+}
+```
 
 # INSTALL
 
@@ -20,7 +26,6 @@ $ npm audit fix
 $ npm start
 
 Tinggal Scan Qr Di WhatsApp Mu
-
 Cara menampilkan menu : zhelp/zmenu
 
 ```
@@ -28,14 +33,11 @@ Cara menampilkan menu : zhelp/zmenu
 ## THANKS TO
 
 * [`ADIWAJSHING`](https://github.com/adiwajshing/Baileys) 
-
 * [`Hafizh`](https://github.com/HAFizh-15) 
-
 * [`MHANKBARBAR`](https://github.com/MhankBarBar)
 
 ## NOTE! 
 
 * Jika ada bug hubungi saya[`WhatsApp`](https://api.whatsapp.com/send?phone=6285793432434) 
-
 * Jangan lupa kasih bintang :) 
 

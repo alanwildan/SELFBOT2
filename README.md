@@ -5,7 +5,6 @@
 # Setting
 
 ``bash
-
 {
 	"prefix": "z",
 	"ownerNumber": "628××××××××××",

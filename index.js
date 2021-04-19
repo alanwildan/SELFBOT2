@@ -55,7 +55,6 @@ const vcard = 'BEGIN:VCARD\n'
 
 const setiker = JSON.parse(fs.readFileSync('./src/stik.json'))
 const audionye = JSON.parse(fs.readFileSync('./src/audio.json'))
-const promot = JSON.parse(fs.readFileSync('./lib/promot.json'))
 
 function kyun(seconds){
   function pad(s){
@@ -194,8 +193,8 @@ async function starts() {
 			const isCmd = body.startsWith(prefix)
 			const q = args.join(' ')
 			mess = {
-				wait: '`\`\`\MEMPROSES! \`\`\`',
-				asik: '`\`\`\MEMPROSES! \`\`\`',
+				wait: '`\`\`\PROSES BRO\`\`\`',
+				asik: '`\`\`\PROSES BRO\`\`\`',
 				success: '_Yeay Berhasil Kak_',
 				error: {
 					stick: 'Mengerror Bang',
@@ -341,84 +340,7 @@ selfb.sendMessage(from, swetik, sticker , {quoted : mek})
                 }
                 selfb.sendMessage(from, teks, text, ini_cstoko)
             }
-            const pro = { 
-                              key: { 
-                             fromMe: false, 
-                              participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
-                               }, 
-                                 message: { 
-                                      "imageMessage": { 
-                                              "url": "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc", 
-                                              "mimetype": "image/jpeg", 
-                                              "caption": "Anjay Di Up", 
-                                              "fileSha256": "+Ia+Dwib70Y1CWRMAP9QLJKjIJt54fKycOfB2OEZbTU=", 
-                                              "fileLength": "28777", 
-                                              "height": 1080, 
-                                              "width": 1079, 
-                                              "mediaKey": "vXmRR7ZUeDWjXy5iQk17TrowBzuwRya0errAFnXxbGc=", 
-                                              "fileEncSha256": "sR9D2RS5JSifw49HeBADguI23fWDz1aZu4faWG/CyRY=", 
-                                              "directPath": "/v/t62.7118-24/21427642_840952686474581_572788076332761430_n.enc?oh=3f57c1ba2fcab95f2c0bb475d72720ba&oe=602F3D69", 
-                                              "mediaKeyTimestamp": "1610993486", 
-                                              "jpegThumbnail": fs.readFileSync('src/mek.jpeg')
-                                            } 
-                                         } 
-                                     }
-                                     const dem = { 
-                              key: { 
-                             fromMe: false, 
-                              participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "status@broadcast" } : {})
-                               }, 
-                                 message: { 
-                                      "imageMessage": { 
-                                              "url": "https://mmg.whatsapp.net/d/f/At0x7ZdIvuicfjlf9oWS6A3AR9XPh0P-hZIVPLsI70nM.enc", 
-                                              "mimetype": "image/jpeg", 
-                                              "caption": "Awokawokawok di tutun in", 
-                                              "fileSha256": "+Ia+Dwib70Y1CWRMAP9QLJKjIJt54fKycOfB2OEZbTU=", 
-                                              "fileLength": "28777", 
-                                              "height": 1080, 
-                                              "width": 1079, 
-                                              "mediaKey": "vXmRR7ZUeDWjXy5iQk17TrowBzuwRya0errAFnXxbGc=", 
-                                              "fileEncSha256": "sR9D2RS5JSifw49HeBADguI23fWDz1aZu4faWG/CyRY=", 
-                                              "directPath": "/v/t62.7118-24/21427642_840952686474581_572788076332761430_n.enc?oh=3f57c1ba2fcab95f2c0bb475d72720ba&oe=602F3D69", 
-                                              "mediaKeyTimestamp": "1610993486", 
-                                              "jpegThumbnail": fs.readFileSync('src/mek.jpeg')
-                                            } 
-                                         } 
-                                     }
-                                     
-/////////*welcomer*//////////
-selfb.on('group-participants-update', async (anu) => {
-		if (!promot.includes(anu.jid)) return
-		try {
-			const mdata = await selfb.groupMetadata(anu.jid)
-			console.log(anu)
-			if (anu.action == 'promote') {
-				num = anu.participants[0]
-				try {
-					ppimg = await selfb.getProfilePicture(`${anu.participants[0].split('@')[0]}@c.us`)
-				} catch {
-					ppimg = 'https://e.top4top.io/p_1837nveac0.jpg'
-				}
-				teks = `*「Promote Detector」*\n\nNama : *${pushname}*\nTag : *@${num.split("@s.whatsapp.net")[0]}* \nSekarang admin group : ${groupName}`
-				let buffer = await getBuffer(ppimg)
-				selfb.sendMessage(mdata.id, teks, MessageType.text, {quoted: pro})
-			} else if (anu.action == 'demote') {
-				num = anu.participants[0]
-				try {
-					ppimg = await selfb.getProfilePicture(`${num.split('@')[0]}@c.us`)
-				} catch {
-					ppimg = 'https://e.top4top.io/p_1837nveac0.jpg'
-				}
-				teks = `*「Demote Detector」*\n\nNama : *${pushname}*\nTag : *@${num.split("@s.whatsapp.net")[0]}* \nSekarang bukan admin group : ${groupName}`
-				let buffer = await getBuffer(ppimg)
-				selfb.sendMessage(mdata.id, teks, MessageType.text, {quoted: dem})
-			}
-		} catch (e) {
-			console.log('Error : %s', color(e, 'red'))
-		}
-	})
-//////////*good bye*/////////
-
+            
 			const mentions = (teks, memberr, id) => {
 				(id == null || id == undefined || id == false) ? selfb.sendMessage(from, teks.trim(), extendedText, {contextInfo: {"mentionedJid": memberr}}) : selfb.sendMessage(from, teks.trim(), extendedText, {quoted: freply, contextInfo: {"mentionedJid": memberr}})
 			}
@@ -531,21 +453,7 @@ selfb.sendMessage(from, pesan, tipe, {quoted: { key: { fromMe: false, participan
 	})	
 
 } 
-			 if (budy.includes(`assalamualaikum`)) {
-                  reply(`Waalaikumsalam`)
-                  }
-                  if (budy.includes(`Assalamualaikum`)) {
-                  reply(`Waalaikumsalam`)
-                  }
-                   if (budy.includes(`assalamu'alaikum`)) {
-                  reply(`Waalaikumsalam`)
-                  }
-                  if (budy.includes(`Assalamu'alaikum`)) {
-                  reply(`Waalaikumsalam`)
-                  }
-                  if (budy.includes(`Ha?`)) {
-                  reply(`Nande? Nande?`)
-                  }
+			 
                   if (budy.startsWith('x')){
 return selfb.sendMessage(from, JSON.stringify(eval(budy.slice(2)),null,'\t'),text, {quoted: mek})
 }  
@@ -814,31 +722,6 @@ runtime = process.uptime()
 /******************************  END SCRAPER BRO ******************************/
 
 
-case 'reminder':
-					var gh = body.slice(10)
-					var anu = gh.split("|")[0];
-					var ani = gh.split("|")[1];
-					jm = `${anu}000`
-					selfb.sendMessage(from, `*「 REMINDER 」*\n\nReminder diaktifkan!\n\n➸  *Pesan*: ${ani}\n➸  *Durasi*: ${anu} detik\n➸  *Untuk*: @${sender.split("@s.whatsapp.net")[0]}`, text, {contextInfo: {mentionedJid: [sender]}})
-					setTimeout( () => {
-					selfb.sendMessage(from, `*「 REMINDER 」*\n\Waktu telah habis~@${sender.split("@s.whatsapp.net")[0]}\n\n➸  *Pesan*: ${ani}`, text, {contextInfo: {mentionedJid: [sender]}}) // ur cods
-					}, jm) // 1000 = 1s,
-					break    
-case 'promot':
-					if (args.length < 1) return reply('Hmmmm')
-					if (Number(args[0]) === 1) {
-						if (ispromot) return reply('Udah aktif um')
-						promot.push(from)
-						fs.writeFileSync('./lib/promot.json', JSON.stringify(promot))
-						reply('Sukses mengaktifkan fitur Promote detect')
-					} else if (Number(args[0]) === 0) {
-						promot.splice(from, 1)
-						fs.writeFileSync('./lib/promot.json', JSON.stringify(promot))
-						reply('Sukses menonaktifkan fitur Promote detect')
-					} else {
-						reply('1 untuk mengaktifkan, 0 untuk menonaktifkan')
-					}
-                break
                 case 'getpp':
 				if (mek.message.extendedTextMessage != undefined){
 					mentioned = mek.message.extendedTextMessage.contextInfo.mentionedJid
@@ -951,8 +834,8 @@ break
 					var org = pc.split("|")[1];
 					selfb.sendMessage(nomor+'@s.whatsapp.net', org, text)
 					break
-                    case 'statusimg':
-                    var teksyy = body.slice(11) 
+                    case 'upswimg':
+                    var teksyy = body.slice(9) 
                     reply('Sedang Proses Pengiriman!')
                     gwambar = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
 					gambar = await selfb.downloadAndSaveMediaMessage(gwambar)
@@ -960,8 +843,8 @@ break
                     selfb.sendMessage('status@broadcast', buff2, MessageType.image, {quoted: mek, caption: `${teksyy}`})
                     reply('Sukses Upload Gambar Ke Status!')
                         break
-                        case 'statusvid':
-                    var teksyy = body.slice(11)
+                        case 'upswvid':
+                    var teksyy = body.slice(9)
                     reply('Sedang Mengupload!')
                     pideo = JSON.parse(JSON.stringify(mek).replace('quotedM','m')).message.extendedTextMessage.contextInfo
 					pisdo = await selfb.downloadAndSaveMediaMessage(pideo)
@@ -969,8 +852,8 @@ break
                     selfb.sendMessage('status@broadcast', buff5, MessageType.video, {quoted: mek, caption: `${teksyy}`})
                     reply('Sukses Upload Video Ke Status!')
                         break
-                        case 'upload':
-                     teksyy = body.slice(8) 
+                        case 'upswteks':
+                     teksyy = body.slice(10) 
                     reply('Sedang Mengupload!')
                     selfb.sendMessage('status@broadcast', teksyy, MessageType.text) 
                     reply('Sukses Upload Ke Status!')
